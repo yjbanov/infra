@@ -18,11 +18,14 @@ than updating the individual .cfg files, updates should be made to
 
 ## Adding new framework test shards
 
-Framework test shards are defined in [dev/bots/test.dart][1]. When you add a new
-shard it does not automatically run in LUCI. To add it to LUCI you need to add
-a new builder in the [framework_config.star][2]. Typically, you'll add two
-builders, one "try" builder that tests PRs, and one "prod" builder that tests
-submitted PRs on the master branch.
+This section talks about test shards defined in [dev/bots/test.dart][1] used to
+split framework tests into smaller chunks that can be tested in parallel. This
+does _not_ refer to [LUCI/Swarming][4] shards.
+
+When you add a new shard it does not automatically run in LUCI. To add it to
+LUCI you need to add a new builder in the [framework_config.star][2]. Typically,
+you'll add two builders, one "try" builder that tests PRs, and one "prod" builder
+that tests submitted PRs on the master branch.
 
 Here's an example of a "try" builder:
 
@@ -89,3 +92,4 @@ projects/flutter search result and click the download icon to force an update.
 [1]: https://github.com/flutter/flutter/blob/master/dev/bots/test.dart
 [2]: https://github.com/flutter/infra/blob/master/config/framework_config.star
 [3]: https://luci-config.appspot.com/#/projects/flutter
+[4]: https://www.chromium.org/developers/testing/isolated-testing/infrastructure
