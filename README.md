@@ -13,7 +13,7 @@ than updating the individual .cfg files, updates should be made to
 - Observe that the `.cfg` files have been updated (e.g. via `git status`).
 - Create a pull request containing changes both to the `.star` files and `.cfg` files.
 - Review and submit the pull request as normal.
-- Changes propagate to LUCI automatically. Go to https://luci-config.appspot.com/#/projects/flutter
+- Changes propagate to LUCI automatically. Go to [LUCI config UI][3]
   to check that new changes have been applied.
 
 ## Adding new framework test shards
@@ -44,7 +44,7 @@ Here's an example of a "try" builder:
     )
 ```
 
-The easiest way to add a new one is to copy an existing builer and tweak the
+The easiest way to add a new one is to copy an existing builder and tweak the
 parameters.
 
 ### Testing new shards
@@ -69,14 +69,9 @@ led get-builder "luci.flutter.try:Linux web_tests" \
   | led edit -pa git_ref='refs/pull/99999/head' \
   | led edit -pa git_url='https://github.com/flutter/flutter' \
   | led edit -pa shard='foo' \
-  | led edit -pa subshards='["0","1","2_last"]' \
   | led edit -pa subshard='1' \
   | led launch
 ```
-
-(NOTE: currently specifying `subshards` will append the subshards to the existing
-subshard list of the builder; if the builder already has enough shards, you can
-omit this argument)
 
 ## Forcing the propagation of these configurations
 
@@ -87,9 +82,10 @@ updated changes happen as scheduled tasks.
 
 Once a change has reached the mirror, one may speed up the propagation of the
 new configuration files by visiting the
-[luci-config web ui](https://luci-config.appspot.com/), logging in, and
+[luci-config web ui][3], logging in, and
 searching for projects/flutter. from there, one may click on the
 projects/flutter search result and click the download icon to force an update.
 
 [1]: https://github.com/flutter/flutter/blob/master/dev/bots/test.dart
 [2]: https://github.com/flutter/infra/blob/master/config/framework_config.star
+[3]: https://luci-config.appspot.com/#/projects/flutter
